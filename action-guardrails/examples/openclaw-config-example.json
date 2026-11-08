@@ -1,0 +1,21 @@
+{
+  "plugins": {
+    "entries": {
+      "action-guardrails": {
+        "enabled": true,
+        "config": {
+          "auditDecisions": true,
+          "rules": [
+            {"tool": "read", "effect": "allow", "pathRoots": ["/ABSOLUTE/PATH/TO/YOUR/SAFE/WORKSPACE"]},
+            {"tool": "web_search", "effect": "allow"},
+            {"tool": "message", "effect": "approve", "recipients": ["team@example.invalid"]},
+            {"tool": "exec", "effect": "deny"},
+            {"tool": "process", "effect": "deny"},
+            {"tool": "browser", "effect": "deny"},
+            {"tool": "nodes", "effect": "deny"}
+          ]
+        }
+      }
+    }
+  }
+}

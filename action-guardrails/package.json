@@ -1,0 +1,38 @@
+{
+  "name": "openclaw-action-guardrails",
+  "version": "0.2.0",
+  "private": false,
+  "type": "module",
+  "description": "Execution-time tool authorization plugin for OpenClaw and reusable JavaScript guard dispatcher",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check index.mjs && node --check src/policy.mjs && node --check src/gateway.mjs && node --check tests/policy.test.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "src/",
+    "openclaw.plugin.json",
+    "README.md",
+    "README.zh-TW.md",
+    "SECURITY.md",
+    "examples/",
+    "LICENSE"
+  ],
+  "openclaw": {
+    "plugin": {
+      "id": "action-guardrails",
+      "label": "Action Guardrails"
+    },
+    "extensions": [
+      "./index.mjs"
+    ]
+  },
+  "exports": {
+    ".": "./src/gateway.mjs",
+    "./policy": "./src/policy.mjs"
+  }
+}

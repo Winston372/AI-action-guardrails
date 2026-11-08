@@ -1,0 +1,72 @@
+{
+  "id": "action-guardrails",
+  "name": "Action Guardrails",
+  "description": "Operator-owned, default-deny execution-time policy for before_tool_call",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "rules": {
+        "type": "array",
+        "description": "Explicit, exact-match tool rules. Empty means deny every call.",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tool",
+            "effect"
+          ],
+          "properties": {
+            "tool": {
+              "type": "string",
+              "minLength": 1
+            },
+            "toolKind": {
+              "type": "string",
+              "minLength": 1
+            },
+            "effect": {
+              "type": "string",
+              "enum": [
+                "allow",
+                "deny",
+                "approve"
+              ]
+            },
+            "pathRoots": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "recipients": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "hosts": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      },
+      "auditDecisions": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "activation": {
+    "onStartup": true
+  }
+}
